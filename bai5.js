@@ -56,21 +56,20 @@ const students = [
         name: "Anh",
         toan: 9,
         ly: 10,
-        hoa: 4,
+        hoa: 9,
     },
     {
         id: 7,
         name: "Binh",
         toan: 3,
         ly: 6,
-        hoa: 4,
+        hoa: 9,
     }
 ];
 
 function kiemTraDTB() {
-    for (let i = 0; i < students.length; i++) {
-        const student = students[i];
-        if (student.toan < 5 || student.ly < 5 || student.hoa < 5) {
+    for (var sinhvien of students) {
+        if (sinhvien.toan < 5 || sinhvien.ly < 5 || sinhvien.hoa < 5) {
             return false;
         }
     }
@@ -78,9 +77,8 @@ function kiemTraDTB() {
 };
 
 function kiemTraXepLoai() {
-    for (let i = 0; i < students.length; i++) {
-        const student = students[i];
-        if (student.toan >= 8 && student.ly >= 8 && student.hoa >= 8) {
+    for (var sinhvien of students) {
+        if (sinhvien.toan >= 8 && sinhvien.ly >= 8 && sinhvien.hoa >= 8) {
             return true;
         }
     }
@@ -94,54 +92,41 @@ function locSV(arr) {
             listStudents.push(student);
         }
     }
-    console.log('=== DANH SÁCH SINH VIÊN XẾP LOẠI GI ===');
-    for (const el of listStudents) {
-        for (const key in el) {
-            console.log(key + ": " + el[key]);
-        }
-        console.log("================");
-    }
+    return listStudents;
 }
 
 function timSVGioi(arr) {
     var check = false;
+    var listStudents = [];
     for (var student of arr) {
         if (student.toan >= 8 && student.ly >= 8 && student.hoa >= 8) {
+            listStudents.push(student);
             check = true;
             break;
         }
     }
     if (check) {
         console.log('Sinh viên xếp loại giỏi:');
-        console.log(student);
+        for (var n of listStudents) {
+            for (var key in n) {
+                console.log(key + ' : ' + n[key]);
+            }
+        }
     } else {
         console.log('ko có sv giỏi nào');
     }
+
 };
 
 function congDiemToan(arr) {
-    for (var n of arr) {
-        n.toan++;
-    }
-    console.log('=== DANH SÁCH SINH VIÊN ===');
-    for (const el of arr) {
-        for (const key in el) {
-            console.log(key + ": " + el[key]);
-        }
-        console.log("================");
+    for (const student of arr) {
+        student.toan < 10 ? student.toan++ : '';
     }
 }
 
 function tongDiem3Mon(arr) {
     for (var el of arr) {
         el.Tongdiem = el.toan + el.ly + el.hoa;
-    }
-    console.log('=== DANH SÁCH SINH VIÊN ===');
-    for (var el of arr) {
-        for (var key in el) {
-            console.log(key + ": " + el[key]);
-        }
-        console.log("================");
     }
 }
 
@@ -158,13 +143,6 @@ function diemTB(arr) {
     for (var el of arr) {
         el.DiemTB = ((el.toan + el.ly + el.hoa) / 3).toFixed(2);
     }
-    console.log('=== DANH SÁCH SINH VIÊN ===');
-    for (var el of arr) {
-        for (var key in el) {
-            console.log(key + ": " + el[key]);
-        }
-        console.log("================");
-    }
 }
 
 function sxTangDan(arr) {
@@ -179,15 +157,17 @@ function sxTangDan(arr) {
             }
         }
     }
-    console.log('=== DANH SÁCH SINH VIÊN SAU KHI SẮP XẾP ===');
-    for (var el of arr) {
-        for (var key in el) {
+}
+// Hàm hiển thị danh sách sinh viên
+function display(student) {
+    console.log('=== DANH SÁCH SINH VIÊN ===');
+    for (const el of student) {
+        for (const key in el) {
             console.log(key + ": " + el[key]);
         }
         console.log("================");
     }
 }
-
 var menu = `=== QUẢN LÝ SINH VIÊN ===
 1. kiểm tra xem có phải tất cả sinh viên đều có các môn trên điểm trung bình không?
 2. kiểm tra xem có sinh viên nào xếp loại giỏi không?
@@ -209,36 +189,42 @@ do {
             if (kiemTraDTB(students)) {
                 console.log('Tất cả Sv đều đủ điểm Tb');
             } else {
-                console.log('Có SV chua đủ diểm Tb')
+                console.log('Có SV chưa đủ diểm Tb')
             };
             break;
         case '2':
-            if (kiemTraXepLoai(students)) {
-                console.log('có sinh viên xếp loại giỏi');
+            kiemTraXepLoai(students)
+            if (dem > 1) {
+                console.log('có' + dem + ' sinh viên xếp loại giỏi');
             } else {
                 console.log('không có sinh viên nào xếp loại giỏi');
             }
             break;
         case '3':
-            locSV(students);
+            display(locSV(students));
+
             break;
         case '4':
             timSVGioi(students);
             break;
         case '5':
             congDiemToan(students);
+            display(students);
             break;
         case '6':
             tongDiem3Mon(students);
+            display(students);
             break;
         case '7':
             tongDiemSV(students);
             break;
         case '8':
             diemTB(students);
+            display(students);
             break;
         case '9':
             sxTangDan(students);
+            display(students);
             break;
         case '0':
             console.log('Bạn đã thoát chương trình');
