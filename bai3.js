@@ -36,29 +36,28 @@ function nhapDoiBong() {
 };
 function hienThiDoiBong() {
     console.log('Danh sách đội bóng là: ');
-    for (var value of danhSachDoiBong) {
-        console.log("ID: " + value.id);
-        console.log("tên: " + value.ten);
-        console.log("Huấn luyện viên: " + value.huanLuyenVien);
-        console.log("Số lần vô địch: " + value.soLanVoDich);
-        console.log("=========");
+    for (var el of danhSachDoiBong) {
+        for (var key in el) {
+            console.log(key + ' : ' + el[key]);
+        }
+        console.log('===================');
     }
 };
 function timDoiBong() {
     var idCanTim = prompt('Nhập ID của đội bóng cần tìm: ');
     var check = false;
-    for (var i = 0; i < danhSachDoiBong.length; i++) {
-        if (danhSachDoiBong[i].id == idCanTim) {
+    for (var el of danhSachDoiBong) {
+        if (el.id == idCanTim) {
             console.log('Thông tin đội bóng bạn cần tìm với id ' + idCanTim + ' là: ');
-            console.log("tên: " + danhSachDoiBong[i].ten);
-            console.log("Huấn luyện viên: " + danhSachDoiBong[i].huanLuyenVien);
-            console.log("Số lần vô địch: " + danhSachDoiBong[i].soLanVoDich);
+            console.log('Tên: ' + el.ten);
+            console.log('Huấn luyện viên: ' + el.huanLuyenVien);
+            console.log('Số lần vô địch: ' + el.soLanVoDich);
             check = true;
             break;
         }
     }
     if (!check) {
-        console.log("Không tìm thấy đội bóng trong danh sách.");
+        alert("Không tìm thấy đội bóng trong danh sách.");
     }
 };
 function xoaDoiBong() {

@@ -23,7 +23,7 @@ function nhapTu() {
             VietNam: VIE
         }
         tuDien.push(Ob);
-        console.log("Đã thêm từ vào từ điển.");
+        alert("Đã thêm từ vào từ điển.");
     } else {
         alert('Đã có từ trong từ điển')
     }

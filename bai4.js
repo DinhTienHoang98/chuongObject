@@ -47,15 +47,27 @@ function nhapQuanbai() {
 }
 function nhapMangQB() {
     var soluong = prompt('Nhập số lượng mảng quân bài');
+
     for (var i = 1; i <= soluong; i++) {
+        var check = false;
         alert('Nhập thông tin cho quân bài thứ: ' + i)
-        var id = prompt(`Nhập id quân bài`)
-        var name = prompt(`Nhập tên quân bài`);
-        var exp = prompt(`Nhập hệ số quân bài`);
-        var point = prompt(`Nhập point quân bài`);
-        var bien = { id: id, name: name, exp: exp, point: point };
-        danhSachQuanBai.push(bien);
-        console.log('Thêm quân bài thành công');
+        var id = prompt(`Nhập id quân bài`);
+        for (var key of danhSachQuanBai) {
+            if (key.id == id) {
+                check = true;
+                break;
+            }
+        }
+        if (!check) {
+            var name = prompt('Nhập tên quân bài');
+            var exp = prompt('Nhập exp');
+            var point = prompt('Nhập point');
+            var bien = { id: id, name: name, exp: exp, point: point };
+            danhSachQuanBai.push(bien);
+            console.log('Thêm quân bài thành công');
+        } else {
+            alert('Id đã có trong danh sách ');
+        }
     }
 }
 
@@ -87,7 +99,7 @@ function sxGiamDan() {
     }
     console.log('Danh sách quân bài đã được sắp xếp theo hệ số giảm dần !');
 }
-function hienThi() {
+function hienThi(danhSachQuanBai) {
     for (var el of danhSachQuanBai) {
         for (var key in el) {
             console.log(key + ' : ' + el[key]);

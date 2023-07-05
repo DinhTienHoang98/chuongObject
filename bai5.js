@@ -167,7 +167,8 @@ function display(student) {
         }
         console.log("================");
     }
-}
+};
+
 var menu = `=== QUẢN LÝ SINH VIÊN ===
 1. kiểm tra xem có phải tất cả sinh viên đều có các môn trên điểm trung bình không?
 2. kiểm tra xem có sinh viên nào xếp loại giỏi không?

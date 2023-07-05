@@ -59,19 +59,9 @@ function themSV() {
     console.log("Đã thêm sinh viên vào danh sách.");
 };
 function suaSV() {
+
     var idCanSua = prompt('Nhập ID của sinh viên cần sửa: ');
     var check = false;
-    // for (var i = 0; i < students.length; i++) {
-    //     if (students[i].id == idCanSua) {
-    //         var tenMoi = prompt("Nhập tên mới của sinh viên:");
-    //         var dcMoi = prompt("Nhập địa chỉ mới của sinh viên:");
-    //         students[i].name = tenMoi;
-    //         students[i].address = dcMoi;
-    //         console.log("Đã sửa thông tin sinh viên.");
-    //         check = true;
-    //         break;
-    //     }
-    // }
     for (var sua of students) {
         if (sua.id == idCanSua) {
             var nameNew = prompt("Nhập tên mới của sinh viên: ", sua.name);
