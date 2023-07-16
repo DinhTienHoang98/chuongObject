@@ -54,7 +54,11 @@ function themSV() {
     var id = prompt("Nhập ID của sinh viên: ");
     var name = prompt("Nhập tên của sinh viên: ");
     var address = prompt("Nhập địa chỉ của sinh viên: ");
-    var sinhVien = { id: id, name: name, address: address };
+    var sinhVien = {
+        id: id,
+        name: name,
+        address: address
+    };
     students.push(sinhVien);
     console.log("Đã thêm sinh viên vào danh sách.");
 };
